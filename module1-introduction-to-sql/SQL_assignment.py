@@ -210,7 +210,38 @@ print(df.shape)
 print(df.head())
 
 # Convert to SQLite3
-df.to_sql('user', con = engine)
-engine.execute("SELECT count(distinct User Id) FROM user").fetchall()
+path = os.path.join(os.path.dirname(__file__), "buddymove_holidayiq.sqlite3")
+db = sqlite3.connect(path)
+#print("CONNECTION:", connection)
+cursor = db.cursor()
+df.to_sql("review", con=db, if_exists="replace", index=False,
+          dtype={"user_id": "TEXT",
+                 "sports": "INTEGER",
+                 "religious": "INTEGER",
+                 "nature": "INTEGER",
+                 "theatre": "INTEGER",
+                 "shopping": "INTEGER",
+                 "picnic": "INTEGER"})
+
+# Buddy Holiday.py
+query_row_count = """
+SELECT
+	count(distinct "User Id") as usder_id_count
+FROM review
+"""
+result = cursor.execute(query_row_count).fetchall() 
+print("Row Count:", result[0][0])
+print('\n')
 
 
+query_nature_shopping = """
+SELECT
+	count(distinct "User Id") as usder_id_count
+FROM review
+WHERE
+	"Nature" >= 100
+	AND "Shopping" >= 100
+"""
+result = cursor.execute(query_nature_shopping).fetchall() 
+print("Count Nature AND Shopping >= 100:", result[0][0])
+print('\n')
