@@ -158,7 +158,7 @@ SELECT
 	character_id
 	,count(distinct item_id) as item_per
 FROM charactercreator_character_inventory
-JOIN armory_weapon ON armory_weapon.item_ptr_id = charactercreator_character_inventory.item_id
+LEFT JOIN armory_weapon ON armory_weapon.item_ptr_id = charactercreator_character_inventory.item_id
 GROUP BY character_id
 LIMIT 20
 """
