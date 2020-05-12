@@ -149,7 +149,10 @@ GROUP BY character_id
 LIMIT 20
 """
 result = curs.execute(query_items_per_character).fetchall()
-print(result)
+var = [list(x) for x in result]
+print(var)
+print('\n')
+
 
 
 ## How many Weapons does each character have? (Return first 20 rows)
@@ -158,12 +161,13 @@ SELECT
 	character_id
 	,count(distinct item_id) as item_per
 FROM charactercreator_character_inventory
-LEFT JOIN armory_weapon ON armory_weapon.item_ptr_id = charactercreator_character_inventory.item_id
+JOIN armory_weapon ON armory_weapon.item_ptr_id = charactercreator_character_inventory.item_id
 GROUP BY character_id
 LIMIT 20
 """
 result = curs.execute(query_weapon_per_character).fetchall()
-print(result)
+var = [list(x) for x in result]
+print(var)
 print('\n')
 
 
@@ -191,9 +195,9 @@ SELECT
 FROM(
 	SELECT
 		character_id
-		,count(distinct item_id) as weapons_per
+		,count(distinct item_ptr_id) as weapons_per
 	FROM charactercreator_character_inventory
-	JOIN armory_weapon ON armory_weapon.item_ptr_id = charactercreator_character_inventory.item_id
+	LEFT JOIN armory_weapon ON armory_weapon.item_ptr_id = charactercreator_character_inventory.item_id
 	GROUP BY character_id
 )
 """
@@ -208,6 +212,7 @@ print('\n')
 df = pd.read_csv('buddymove_holidayiq.csv')
 print(df.shape)
 print(df.head())
+print('\n')
 
 # Convert to SQLite3
 path = os.path.join(os.path.dirname(__file__), "buddymove_holidayiq.sqlite3")
@@ -245,3 +250,18 @@ WHERE
 result = cursor.execute(query_nature_shopping).fetchall() 
 print("Count Nature AND Shopping >= 100:", result[0][0])
 print('\n')
+
+query_avg_allcategories = """
+SELECT 
+    AVG(Sports)
+    ,AVG(Religious)
+    ,AVG(Nature)
+    ,AVG(Theatre)
+    ,AVG(Shopping)
+    ,AVG(Picnic)
+FROM REVIEW
+"""
+result = cursor.execute(query_avg_allcategories).fetchall() 
+print("Count Nature AND Shopping >= 100:", result[0][0])
+print('\n')
+
