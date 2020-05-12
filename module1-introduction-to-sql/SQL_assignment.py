@@ -262,6 +262,6 @@ SELECT
 FROM REVIEW
 """
 result = cursor.execute(query_avg_allcategories).fetchall() 
-print("Count Nature AND Shopping >= 100:", result[0][0])
+print("Average All Categories:", result[0][0])
 print('\n')
 
