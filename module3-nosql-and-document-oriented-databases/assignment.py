@@ -4,6 +4,28 @@ import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 
+## "How was working with MongoDB different from working with PostgreSQL? 
+
+'''
+I think the main difference working with MongoDB vs. PostgreSQL was the most 
+obvious of not having to use SQL and the subsequent queries. I think the ability
+to use more familiar methods such as dictionaires to search for information was
+the major benefit of working with Mongo v. PostgreSQL. Persoanlly, I think SQL
+is underrated as a language and in it's usefulness. Overall, I liked working with
+both and can see the need for both as well depending on the circumstances.
+'''
+
+## What was easier, and what was harder?"
+
+'''
+Honestly, I don't think this is a good question; there wasn't anything harder or 
+easier on any side, it was just different. If I had to choose one thing from an 
+objective standpoint, I would say that the added skill of having to learn SQL in
+order to query SQL makes it harder; however, that could also be offset when you 
+realize that you have to also get comfortable with the package specifics of using
+Mongo as well.
+'''
+
 ##------------------------------------------------------------------------------
 # 1. Reading in a specific SQLite3 Table
 ##------------------------------------------------------------------------------
