@@ -12,11 +12,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# SQLalchemy -- ** Used for PostgreSQL at the bottom **
-from sqlalchemy import create_engine
-DB_URL = os.getenv("DB_URL", default='OOPS')
-engine = create_engine(DB_URL, echo=False)
-
 # os filepath 
 DATABASE_FILEPATH = os.path.join(os.path.dirname(__file__), "rpg_db.sqlite3")
 
@@ -72,6 +67,11 @@ df = pd.DataFrame(lite_var, columns = ['id', 'names', 'level',
 
 
 ##### Titanic #####
+
+from sqlalchemy import create_engine
+DB_URL = os.getenv("DB_URL", default='OOPS')
+engine = create_engine(DB_URL, echo=False)
+
 ## Read_csv of titanic
 #titanic = pd.read_csv('titanic.csv')
 
